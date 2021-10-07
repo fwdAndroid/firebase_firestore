@@ -29,7 +29,7 @@ class _SignInState extends State<SignIn> {
           onPressed: () async {
             dynamic result = await authService.signInAno();
             if (result != null) {
-              print(authService.firebaseAuth.currentUser);
+              print(authService);
             } else {
               print('Error');
             }
