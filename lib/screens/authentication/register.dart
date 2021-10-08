@@ -1,14 +1,14 @@
 import 'package:firebasse_firestore/service/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({Key? key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterFormState createState() => _RegisterFormState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterFormState extends State<RegisterForm> {
   AuthService authService = AuthService();
   //TextField States To Listen the changes
   String email = "";
@@ -20,7 +20,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0,
-        title: const Text("SignIn to Brew Crew"),
+        title: const Text("Register to Brew Crew"),
       ),
       body: Form(
         child: Column(
@@ -54,7 +54,7 @@ class _SignInState extends State<SignIn> {
               ),
               onPressed: () async {},
               child: Text(
-                'Sign In',
+                'Register',
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
