@@ -1,11 +1,11 @@
 import 'package:firebasse_firestore/loading/loadingspiner.dart';
-import 'package:firebasse_firestore/screens/home/home.dart';
+import 'package:firebasse_firestore/screens/authentication/signin.dart';
 import 'package:firebasse_firestore/service/auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatefulWidget {
-  final Function toggleView;
-  RegisterForm({required this.toggleView});
+  // final Function toggleView;
+  // RegisterForm({required this.toggleView});
   @override
   _RegisterFormState createState() => _RegisterFormState();
 }
@@ -30,7 +30,11 @@ class _RegisterFormState extends State<RegisterForm> {
               actions: [
                 TextButton.icon(
                     onPressed: () {
-                      widget.toggleView();
+                      //N    widget.toggleView()
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignIn()),
+                      );
                     },
                     icon: Icon(Icons.person),
                     label:

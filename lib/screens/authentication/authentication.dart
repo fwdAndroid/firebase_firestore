@@ -21,11 +21,11 @@ class _AuthenticateState extends State<Authenticate> {
 
     if (isSignIn) {
       return SignIn(
-        toggleView: toggleView,
-      );
+          // toggleView: toggleView,
+          );
       // ignore: dead_code
     } else {
-      return RegisterForm(toggleView: toggleView);
+      return RegisterForm();
     }
   }
 }

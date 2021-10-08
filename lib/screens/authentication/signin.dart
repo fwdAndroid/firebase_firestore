@@ -1,10 +1,13 @@
 import 'package:firebasse_firestore/loading/loadingspiner.dart';
+import 'package:firebasse_firestore/screens/authentication/register.dart';
 import 'package:firebasse_firestore/service/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
-  final Function toggleView;
-  SignIn({required this.toggleView});
+  const SignIn({Key? key}) : super(key: key);
+
+  // final Function toggleView;
+  // SignIn({required this.toggleView});
 
   @override
   _SignInState createState() => _SignInState();
@@ -29,7 +32,11 @@ class _SignInState extends State<SignIn> {
               actions: [
                 TextButton.icon(
                     onPressed: () {
-                      widget.toggleView();
+                      // ignore: non_constant_identifier_names
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterForm()),
+                      );
                     },
                     icon: Icon(Icons.app_registration),
                     label:
