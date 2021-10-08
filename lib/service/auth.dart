@@ -38,4 +38,34 @@ class AuthService {
       print(e.toString());
     }
   }
+
+  //Register With Email And Password
+  Future registerWithEmailAndPassword(
+      {required String email, required String password}) async {
+    try {
+      UserCredential userCredential = await firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      User? user = userCredential.user;
+      print(user);
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  //SignIn With Email and Password
+  Future signInWithEmailAndPassword(
+      {required String email, required String password}) async {
+    try {
+      UserCredential userCredential = await firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      User? user = userCredential.user;
+      print(user);
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
