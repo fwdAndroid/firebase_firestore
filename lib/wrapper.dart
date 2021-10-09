@@ -10,12 +10,12 @@ class Wrrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserModal? user = Provider.of<UserModal?>(context);
-    print(user);
-
     if (user == null) {
       return Authenticate();
     } else {
-      return Home();
+      return Home(
+        id: user.uid,
+      );
     }
   }
 }

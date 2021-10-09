@@ -1,6 +1,7 @@
 //Authentication Function
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebasse_firestore/modals/usermodals.dart';
+import 'package:firebasse_firestore/service/database.dart';
 
 class AuthService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -22,7 +23,6 @@ class AuthService {
     try {
       UserCredential credentialAuth = await firebaseAuth.signInAnonymously();
       User? user = credentialAuth.user;
-      print(user);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -46,7 +46,8 @@ class AuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
 
       User? user = userCredential.user;
-      print(user);
+      //Create A new Document for the user with the uid
+      await DatabaseService(uid: user!.uid).updateData("0", "New Sugar", 100);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -61,7 +62,6 @@ class AuthService {
           .signInWithEmailAndPassword(email: email, password: password);
 
       User? user = userCredential.user;
-      print(user);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
