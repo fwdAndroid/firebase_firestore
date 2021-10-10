@@ -11,7 +11,7 @@ class BrewList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brews = Provider.of<List<BrewModel>>(context);
+    final brews = Provider.of<List<BrewModel>>(context) ?? [];
     return ListView.builder(
       itemBuilder: (context, index) {
         return BrewTile(brewModel: brews[index]);
