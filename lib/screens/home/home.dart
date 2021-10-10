@@ -1,6 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: prefer_const_constructors
+
+import 'package:firebasse_firestore/modals/brewmodel.dart';
 import 'package:firebasse_firestore/service/auth.dart';
 import 'package:firebasse_firestore/service/database.dart';
+import 'package:firebasse_firestore/setting/setting_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +13,19 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthService authService = AuthService();
-    return StreamProvider<QuerySnapshot?>.value(
+
+    void showSettingPanel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (x) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+              child: SettingForm(),
+            );
+          });
+    }
+
+    return StreamProvider<List<BrewModel>?>.value(
       initialData: null,
       value: DatabaseService(uid: id).bews,
       child: Scaffold(
@@ -20,11 +35,25 @@ class Home extends StatelessWidget {
           elevation: 0,
           actions: [
             TextButton.icon(
-                onPressed: () async {
-                  await authService.signOut();
-                },
-                icon: Icon(Icons.logout),
-                label: Text('Logout', style: TextStyle(color: Colors.white)))
+              onPressed: () async {
+                await authService.signOut();
+              },
+              icon: Icon(Icons.logout),
+              label: Text(
+                'Logout',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                showSettingPanel();
+              },
+              icon: Icon(Icons.settings),
+              label: Text(
+                'Settings',
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           ],
         ),
         body: Container(

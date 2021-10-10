@@ -1,6 +1,8 @@
 import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebasse_firestore/list/brew_list.dart';
+import 'package:firebasse_firestore/modals/brewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,11 +11,12 @@ class BrewList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brews = Provider.of<QuerySnapshot>(context);
-    // ignore: avoid_print
-    for (var doc in brews.docs) {
-      print(doc.data());
-    }
-    return Container();
+    final brews = Provider.of<List<BrewModel>>(context);
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return BrewTile(brewModel: brews[index]);
+      },
+      itemCount: brews.length,
+    );
   }
 }
